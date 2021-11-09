@@ -45,7 +45,7 @@ client.connect((err) => {
     });
 
     // confirm order
-    app.post("/confirmOrder", async(req, res) => {
+    app.post("/confirmOrder", async (req, res) => {
         const result = await bookingsCollection.insertOne(req.body);
         res.send(result);
     });
@@ -62,6 +62,7 @@ client.connect((err) => {
     app.delete("/deleteOrder/:id", async (req, res) => {
         const result = await bookingsCollection.deleteOne({_id: ObjectId(req.params.id)});
         const result1 = await servicesCollection.deleteOne({_id: ObjectId(req.params.id)});
+        res.send(result);
         res.send(result1);
     });
 
